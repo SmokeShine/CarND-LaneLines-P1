@@ -15,13 +15,13 @@ To complete the project, two files will be submitted: a file containing project 
 To meet specifications in the project, take a look at the requirements in the [project rubric](https://review.udacity.com/#!/rubrics/322/view)
 
 
-Creating a Great Writeup
----
-For this project, a great writeup should provide a detailed response to the "Reflection" section of the [project rubric](https://review.udacity.com/#!/rubrics/322/view). There are three parts to the reflection:
-
 1. Describe the pipeline
+>I converted the images to grayscale to reduce computation cost.Then I removed noises by passing through a Gaussian filter. I defined a region of interest which I intend to find the lanes, and applied Canny edge detection to find the edges in the images. 
+From the edges detected, we pass it through a Hough Line transform to detect the lines.Now, we know of the lines present in the image, I used formula of slope and the coordinates of the lines, to clean additional random noises and create lists for left and right lane.
 
-2. Identify any shortcomings
+> As the markings on lanes could be sparse, I had to extrapolate the lines. I found the average slope and intercept of the individual lane lists. This will further reduce the noise arising due to lane borders. As points closer to the camera appears larger, this will make the base heavy. A small normalizing factor based on heuristics is applied to counter this effect.
+With the slope and intercept, we now know the line for the lanes. However, to restrict the lanes to area of interest, we put the y coordinates of the lanes to get the  
+corresponding x value. We then plot a line through this two coordinates to get the individual lanes.
 
 3. Suggest possible improvements
 
